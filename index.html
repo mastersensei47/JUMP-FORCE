@@ -200,11 +200,10 @@ main{ margin-top:80px; padding:20px; max-width:1300px; margin-left:auto; margin-
 </section>
 
 <div class="acordeon">
-  <div class="acordeon-header" onclick="toggleAcordeon(this)">🎞️ verificacion <span>▼</span></div>
+  <div class="acordeon-header" onclick="toggleAcordeon(this)">🎞️ verificación <span>▼</span></div>
   <div class="acordeon-content">
     <iframe src="https://drive.google.com/file/d/1Cfa1dGUL_BaMdUBJIz5MQ9v3Prdpoj9m/preview" width="100%" height="450" style="border:none;"></iframe>
   </div>
-  
 </div>
 
 <style>
@@ -262,11 +261,24 @@ main{ margin-top:80px; padding:20px; max-width:1300px; margin-left:auto; margin-
   background: #222;
 }
 
+/* 🔥 ACORDEÓN ARREGLADO */
 .acordeon-content {
-  display: none;
+  max-height: 0;
+  overflow: hidden;
   background: #111;
   border-radius: 10px;
   margin-top: 5px;
+  transition: max-height 0.4s ease;
+}
+
+/* Flechita animada */
+.acordeon-header span {
+  float: right;
+  transition: transform 0.3s;
+}
+
+.acordeon-header.active span {
+  transform: rotate(180deg);
 }
 
 .acordeon-content ul li {
@@ -280,7 +292,14 @@ main{ margin-top:80px; padding:20px; max-width:1300px; margin-left:auto; margin-
 <script>
 function toggleAcordeon(el) {
   const content = el.nextElementSibling;
-  content.style.display = content.style.display === "block" ? "none" : "block";
+
+  el.classList.toggle("active");
+
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
 }
 </script>
 
@@ -320,6 +339,16 @@ function toggleAcordeon(el) {
     <li><span class="icono">🎮</span><strong>Gráficos:</strong> NVIDIA GTX 660 Ti / AMD Radeon HD 7950</li>
     <li><span class="icono">💾</span><strong>Almacenamiento:</strong> 17 GB disponibles</li>
   </ul>
+
+  <h2>🎮 INFORMACIÓN DEL JUEGO</h2>
+  <ul class="info-lista">
+    <li><span class="icono">📌</span><strong>Género:</strong> Acción, Lucha, Anime</li>
+    <li><span class="icono">🖥️</span><strong>Plataforma:</strong> PC</li>
+    <li><span class="icono">📦</span><strong>Edición:</strong> Full Version + All DLCs</li>
+    <li><span class="icono">📅</span><strong>Lanzamiento:</strong> 2019</li>
+  </ul>
+
+</div>
 
   <h2>🎮 INFORMACIÓN DEL JUEGO</h2>
   <ul class="info-lista">
